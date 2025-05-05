@@ -1,0 +1,67 @@
+/* Reset default margins and set base typography */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Set up Flexbox layout for sticky footer */
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* The wrapper expands to fill available vertical space */
+  .wrapper {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  /* Header and footer styling */
+  header, footer {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Styling for the fruit container */
+  #fruit-container {
+    border: 2px solid black;
+    padding: 10px;
+    background-color: lightgreen;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the dynamically inserted contact form */
+  #contact-form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  #contact-form:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Animation for form submission feedback */
+  .submitted {
+    animation: fadeOut 2s forwards;
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+    
+   
+ 

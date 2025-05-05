@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* 1. Reset and Full-Height Setup */
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+      }
+
+      /* 2. Flexbox for Layout */
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .wrapper {
+        flex: 1;
+        padding: 20px;
+      }
+
+      header, footer {
+        background-color: #f2f2f2;
+        padding: 10px;
+        text-align: center;
+      }
+
+      /* 3. Fruit Container Styling */
+      #fruit-container {
+        border: 2px solid black;
+        padding: 10px;
+        background-color: lightgreen;
+        margin-bottom: 20px;
+      }
+
+      /* 4. Contact Form Styling */
+      #contact-form {
+        border: 1px solid #ccc;
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto 20px auto;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      #contact-form:hover {
+        transform: scale(1.02);
+      }
+
+      /* 5. Submission Animation */
+      .submitted {
+        animation: fadeOut 2s forwards;
+      }
+
+      @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0.5; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>Introduction to JavaScript and DOM Manipulation</header>
+      <h1>My Web Page</h1>
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <p>
+          Welcome to my web page! This is a simple example of HTML, CSS, and
+          JavaScript.
+        </p>
+        <p>Here we are going to demonstrate various web development techniques, like:</p>
+           <ol>
+            <li>Writing basic JavaScript functions.</li>
+            <li>Use JavaScript to manipulate the DOM dynamically</li>
+            <li>Use JavaScript to create and insert HTML elements.</li>
+            <li>Use JavaScript to handle form submissions.</li>
+           </ol>
+           The aim is to develop a responsive and interactive webpage.
+        </p>
+    
+      </section>
+      <div id="fruit-container">
+        <h2>My Favorite Fruits</h2>
+        <p>Here is a list of my favorite fruits</p>
+        <ol id="fruit-list">
+          <li>Apple</li>
+          <li>Banana</li>
+          <li>Cherry</li>
+          <li>Grapes</li>
+          <li>Mango</li>
+        </ol>
+      </div>
+      <!-- The contact form will be inserted here dynamically -->
+    </div>
+
+    <footer>
+      <p>&copy; 2025 All Rights Reserved</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Dynamically create the contact form section with id "contact-form"
+        let formSection = document.createElement("section");
+        formSection.setAttribute("id", "contact-form");
+        formSection.innerHTML = `
+            <h2>Contact Form</h2>
+            <form id="userForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required><br><br>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <button type="submit">Submit</button>
+            </form>
+        `;
+
+        // Locate the div element with id "fruit-container"
+        const fruitContainer = document.getElementById("fruit-container");
+        if (fruitContainer) {
+          // Insert the new form section immediately after the fruit-container div
+          fruitContainer.insertAdjacentElement("afterend", formSection);
+        } else {
+          console.error("The element with id 'fruit-container' was not found.");
+        }
+
+        // Add event listener for form submission
+        document.getElementById("userForm").addEventListener("submit", function (event) {
+          event.preventDefault();
+          alert(`Hello, ${document.getElementById("name").value}! Your form has been submitted.`);
+          // Add a class to trigger our submission animation
+          formSection.classList.add("submitted");
+
+          // Optionally, after 2 seconds, remove the animation class and reset the form.
+          setTimeout(function () {
+            formSection.classList.remove("submitted");
+            document.getElementById("userForm").reset();
+          }, 2000);
+        });
+      });
+    </script>
+  </body>
+</html>
